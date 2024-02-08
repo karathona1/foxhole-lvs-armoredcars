@@ -1,6 +1,6 @@
 "VertexlitGeneric"
 {
-	"$basetexture" "foxhole/vehicles/freeman/Tire01"
+	"$basetexture" "vehicles/freeman/Tire01"
 	"$surfaceprop" "Wood_Solid"
 
 	"$color2" "[1.5 1.5 1.5]"				

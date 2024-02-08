@@ -1,7 +1,7 @@
 "VertexlitGeneric"
 {
-	"$basetexture" "foxhole/vehicles/xiphos/ArmoredCar"
-	"$bumpmap" "foxhole/vehicles/xiphos/ArmoredCarN"
+	"$basetexture" "vehicles/xiphos/ArmoredCar"
+	"$bumpmap" "vehicles/xiphos/ArmoredCarN"
 	"$surfaceprop" "Metal"
 
 	"$color2" "[1.5 1.5 1.5]"	

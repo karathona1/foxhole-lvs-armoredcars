@@ -1,7 +1,7 @@
 "VertexlitGeneric"
 {
-	"$basetexture" "foxhole/vehicles/lighttank/Chainlink"
-	"$bumpmap" "foxhole/vehicles/lighttank/ChainlinkN"
+	"$basetexture" "vehicles/gravekeeper/Chainlink"
+	"$bumpmap" "vehicles/gravekeeper/ChainlinkN"
 	"$surfaceprop" "MetalGrate"
 
 	"$color2" "[1.5 1.5 1.5]"				
