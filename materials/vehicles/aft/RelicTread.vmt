@@ -1,7 +1,7 @@
 "VertexlitGeneric"
 {
-	"$basetexture" "foxhole/vehicles/aft/RelicTread"
-	"$normalmap" "foxhole/vehicles/aft/RelicTreadN"
+	"$basetexture" "vehicles/aft/RelicTread"
+	"$normalmap" "vehicles/aft/RelicTreadN"
 	"$surfaceprop" "Metal"
 
 	"$color2" "[1.5 1.5 1.5]"				
