@@ -6,7 +6,7 @@ $opaque
 
 $ambientboost
 
-$cdmaterials "foxhole/vehicles/freeman\"
+$cdmaterials "vehicles/freeman\"
 
 $surfaceprop "metal"
 
