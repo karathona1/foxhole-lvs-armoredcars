@@ -3,10 +3,10 @@ ENT.Base = "lvs_base_wheeldrive"
 ENT.PrintName = "O'Brien V.101 Freeman"
 ENT.Author = "Kalamari"
 ENT.Information = "Kalamari's Foxhole Vehicles"
-ENT.Category = "[LVS] - Cars"
+ENT.Category = "[LVS] - Foxhole"
 
-ENT.VehicleCategory = "Tanks"
-ENT.VehicleSubCategory = "Foxhole"
+ENT.VehicleCategory = "Foxhole"
+ENT.VehicleSubCategory = "Armored Car"
 
 ENT.Spawnable			= true
 ENT.AdminSpawnable		= false

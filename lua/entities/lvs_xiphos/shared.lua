@@ -3,10 +3,10 @@ ENT.Base = "lvs_base_wheeldrive"
 ENT.PrintName = "T3 Xiphos"
 ENT.Author = "Kalamari"
 ENT.Information = "Kalamari's Foxhole Vehicles"
-ENT.Category = "[LVS] - Cars"
+ENT.Category = "[LVS] - Foxhole"
 
-ENT.VehicleCategory = "Tanks"
-ENT.VehicleSubCategory = "Foxhole"
+ENT.VehicleCategory = "Foxhole"
+ENT.VehicleSubCategory = "Armored Car"
 
 ENT.Spawnable			= true
 ENT.AdminSpawnable		= false
