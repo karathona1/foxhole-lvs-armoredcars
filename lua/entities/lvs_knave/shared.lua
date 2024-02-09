@@ -94,6 +94,7 @@ ENT.Lights = {
 
 function ENT:OnSetupDataTables()
 	self:AddDT( "Entity", "GunnerSeat" )
+	self:AddDT( "Bool", "AlternateBarrel")
 end
 
 //grenade launchers
@@ -116,6 +117,7 @@ function ENT:InitWeapons()
 		if self:GetAI() then return end
 
 		self:FireProjectile()
+		self:SetAlternateBarrel(not self:GetAlternateBarrel())
 	end
 	weapon.Attack = function( ent )
 		if not self:GetAI() then return end
