@@ -1,6 +1,3 @@
-AddCSLuaFile( "shared.lua" )
-AddCSLuaFile("cl_tankview.lua")
-AddCSLuaFile("cl_optics.lua")
 include("shared.lua")
 include("cl_tankview.lua")
 include("cl_optics.lua")
