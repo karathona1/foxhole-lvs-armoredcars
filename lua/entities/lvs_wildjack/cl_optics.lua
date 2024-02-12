@@ -1,5 +1,5 @@
 
-ENT.OpticsFov = 25
+ENT.OpticsFov = 30
 ENT.OpticsEnable = true
 ENT.OpticsZoomOnly = true
 ENT.OpticsFirstPerson = true
@@ -8,22 +8,22 @@ ENT.OpticsPodIndex = {
 	[1] = true,
 }
 
-local axis = Material( "lvs/triangle2.png" )
+local axis = Material( "lvs/circle_hollow.png" )
 local sight = Material( "lvs/shermansights.png" )
 local scope = Material( "lvs/scope.png" )
 
 function ENT:PaintOptics( Pos2D, Col, PodIndex, Type )
 	surface.SetMaterial( axis )
-	surface.SetDrawColor( 255, 255, 255, 1 )
-	surface.DrawTexturedRect( Pos2D.x, Pos2D.y, 16, 16 )
-	surface.SetDrawColor( 0, 0, 0, 255, 1 )
-	surface.DrawTexturedRect( Pos2D.x - 8, Pos2D.y, 16, 16 )
+	surface.SetDrawColor( 255, 255, 255, 25 )
+	surface.DrawTexturedRect( Pos2D.x - 7, Pos2D.y - 7, 16, 16 )
+	surface.SetDrawColor( 0, 0, 0, 255 )
+	surface.DrawTexturedRect( Pos2D.x - 8, Pos2D.y - 8, 16, 16 )
 
 	surface.SetMaterial( sight )
 	surface.SetDrawColor( 0, 0, 0, 150 )
 	surface.DrawTexturedRect( Pos2D.x - 210, Pos2D.y - 23, 420, 420 )
 
-	self:DrawRotatedText( "AP 40mm", Pos2D.x + 35, Pos2D.y + 10, "LVS_FONT_PANEL", Color(0,0,0,220), 0)
+	self:DrawRotatedText( "FLAMME", Pos2D.x + 40, Pos2D.y + 10, "LVS_FONT_PANEL", Color(0,0,0,220), 0)
 
 	local diameter = ScrH()
 	local radius = diameter * 0.5

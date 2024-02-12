@@ -136,7 +136,7 @@ function ENT:InitWeapons()
 		bullet.Dir 	= -Muzzle.Ang:Forward()
 		bullet.Spread 	= Vector(0.005,0.005,0.005)
 		bullet.TracerName = "lvs_tracer_autocannon"
-		bullet.Force	= 1500
+		bullet.Force	= 2000
 		bullet.HullSize = 0
 		bullet.Damage	= 150
 		bullet.Velocity = 40000

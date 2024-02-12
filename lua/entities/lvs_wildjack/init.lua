@@ -1,8 +1,10 @@
-AddCSLuaFile( "shared.lua" )
-AddCSLuaFile( "cl_init.lua" )
+AddCSLuaFile("shared.lua")
+AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("sh_turret.lua")
+AddCSLuaFile("sh_tracks.lua")
 include("shared.lua")
 include("sh_turret.lua")
+include("sh_tracks.lua")
 
 
 function ENT:OnSpawn( PObj )
@@ -13,62 +15,14 @@ function ENT:OnSpawn( PObj )
 	GunnerSeat.HidePlayer = false
 	self:SetGunnerSeat( GunnerSeat )
 
-	local ID = self:LookupAttachment( "muzzle_mg1" )
+	local ID = self:LookupAttachment( "muzzle" )
 	local Muzzle = self:GetAttachment( ID )
 	self.SNDTurretMG = self:AddSoundEmitter( self:WorldToLocal( Muzzle.Pos ), "lvs/vehicles/sherman/mg_loop.wav", "lvs/vehicles/sherman/mg_loop_interior.wav" )
 	self.SNDTurretMG:SetSoundLevel( 95 )
 	self.SNDTurretMG:SetParent( self, ID )
 
-	local ID2 = self:LookupAttachment( "muzzle_mg2" )
-	local Muzzle2 = self:GetAttachment( ID2 )
-	self.SNDTurretMG = self:AddSoundEmitter( self:WorldToLocal( Muzzle2.Pos ), "lvs/vehicles/sherman/mg_loop.wav", "lvs/vehicles/sherman/mg_loop_interior.wav" )
-	self.SNDTurretMG:SetSoundLevel( 95 )
-	self.SNDTurretMG:SetParent( self, ID2 )
-
 	self:AddEngine( Vector(-72,0,72), Angle(0,-90,0) )
 	self:AddFuelTank( Vector(-82,0,71), Angle(0,0,0), 600, LVS.FUELTYPE_PETROL )
-
-	-- example:
-	local WheelModel = "models/wheel_obrien.mdl"
-
-	local WheelFrontLeft = self:AddWheel( { pos = Vector(53,41,25), mdl = WheelModel, mdl_ang = Angle(0,-90,0) } )
-	local WheelFrontRight = self:AddWheel( { pos = Vector(53,-41,25), mdl = WheelModel, mdl_ang = Angle(0,90,0) } )
-
-	local WheelRearLeft = self:AddWheel( { pos = Vector(-67,41,25), mdl = WheelModel, mdl_ang = Angle(0,-90,0) } )
-	local WheelRearRight = self:AddWheel( { pos = Vector(-67,-41,25), mdl = WheelModel, mdl_ang = Angle(0,90,0) } )
-
-	local SuspensionSettings = {
-		Height = 12,
-		MaxTravel = 7,
-		ControlArmLength = 25,
-		SpringConstant = 20000,
-		SpringDamping = 2000,
-		SpringRelativeDamping = 2000,
-	}
-
-	local FrontAxle = self:DefineAxle( {
-		Axle = {
-			ForwardAngle = Angle(0,0,0),
-			SteerType = LVS.WHEEL_STEER_FRONT,
-			SteerAngle = 30,
-			TorqueFactor = 0.3,
-			BrakeFactor = 1,
-		},
-		Wheels = { WheelFrontLeft, WheelFrontRight },
-		Suspension = SuspensionSettings,
-	} )
-
-	local RearAxle = self:DefineAxle( {
-		Axle = {
-			ForwardAngle = Angle(0,0,0),
-			SteerType = LVS.WHEEL_STEER_NONE,
-			TorqueFactor = 0.7,
-			BrakeFactor = 1,
-			UseHandbrake = true,
-		},
-		Wheels = { WheelRearLeft, WheelRearRight },
-		Suspension = SuspensionSettings,
-	} )
 
 	//FRONT ARMOR
 	self:AddArmor( Vector(85,0,35), Angle( -35,0,0 ), Vector(-10,-35,-15), Vector(10,35,50), 800, self.FrontArmor )

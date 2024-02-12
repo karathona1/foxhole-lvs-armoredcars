@@ -1,6 +1,6 @@
-ENT.Base = "lvs_base_wheeldrive"
+ENT.Base = "lvs_tank_wheeldrive"
 
-ENT.PrintName = "O'Brien V.101 Freeman"
+ENT.PrintName = "O'Brien V.130 Wild Jack"
 ENT.Author = "Kalamari"
 ENT.Information = "Kalamari's Foxhole Vehicles"
 ENT.Category = "[LVS] - Foxhole"
@@ -11,18 +11,11 @@ ENT.VehicleSubCategory = "Armored Car"
 ENT.Spawnable			= true
 ENT.AdminSpawnable		= false
 
-ENT.MDL = "models/car_freeman.mdl"
-
-ENT.GibModels = {
-	"models/freeman_wheel.mdl",
-	"models/freeman_wheel.mdl",
-	"models/freeman_wheel.mdl",
-	"models/freeman_wheel.mdl",
-}
+ENT.MDL = "models/car_wildjack.mdl"
 
 ENT.AITEAM = 1
 
-ENT.MaxHealth = 1250
+ENT.MaxHealth = 900
 
 ENT.SpawnNormalOffset = 40
 
@@ -30,19 +23,19 @@ ENT.SpawnNormalOffset = 40
 ENT.DSArmorIgnoreForce = 1200
 ENT.CannonArmorPenetration = 3900
 
-ENT.MaxVelocity = 400
+ENT.MaxVelocity = 233
 ENT.MaxVelocityReverse = 200
 
 ENT.EngineCurve = 0.2
-ENT.EngineTorque = 250
+ENT.EngineTorque = 500
 
 ENT.TransGears = 3
 ENT.TransGearsReverse = 1
 
-ENT.FastSteerAngleClamp = 15
-ENT.FastSteerDeactivationDriftAngle = 12
+ENT.FastSteerAngleClamp = 5
+ENT.FastSteerDeactivationDriftAngle = 5
 
-ENT.PhysicsWeightScale = 2.5
+ENT.PhysicsWeightScale = 1.5
 ENT.PhysicsDampingForward = true
 ENT.PhysicsDampingReverse = true
 
@@ -51,13 +44,11 @@ ENT.lvsShowInSpawner = true
 ENT.WheelBrakeAutoLockup = true
 ENT.WheelBrakeLockupRPM = 15
 
-ENT.WheelDownForce = 1000
-
 ENT.EngineSounds = {
 	{
 		sound = "vehicles/ACIdle.wav",
 		Volume = 0.66,
-		Pitch = 70,
+		Pitch = 80,
 		PitchMul = 25,
 		SoundLevel = 75,
 		SoundType = LVS.SOUNDTYPE_IDLE_ONLY,
@@ -65,7 +56,7 @@ ENT.EngineSounds = {
 	{
 		sound = "vehicles/ACDrive.wav",
 		Volume = 1.33,
-		Pitch = 50,
+		Pitch = 80,
 		PitchMul = 100,
 		SoundLevel = 75,
 		UseDoppler = true,
@@ -78,14 +69,14 @@ ENT.Lights = {
 		SubMaterialID = 1,
 		Sprites = {
 			[1] = {
-				pos = Vector(109.12,-0.19,35.82),
+				pos = Vector(57.1,22.3,77.4),
 				colorB = 200,
 				colorA = 150,
 			},
 		},
 		ProjectedTextures = {
 			[1] = {
-				pos = Vector(109.12,-0.19,35.82),
+				pos = Vector(57.1,22.3,77.4),
 				ang = Angle(0,0,0),
 				colorB = 200,
 				colorA = 150,
@@ -99,21 +90,19 @@ function ENT:OnSetupDataTables()
 	self:AddDT( "Entity", "GunnerSeat" )
 end
 
-//anti-tank gun
 function ENT:InitWeapons()
 	local COLOR_WHITE = Color(255,255,255,255)
 
-	//CANNON
+	//MACHINEGUN
 	local weapon = {}
-	weapon.Icon = Material("lvs/weapons/bullet_ap.png")
-	weapon.Ammo = 25
-	weapon.Delay = 7
-	weapon.HeatRateUp = 1
-	weapon.HeatRateDown = 0.1428
+	weapon.Icon = Material("lvs/weapons/mg.png")
+	weapon.Ammo = 500
+	weapon.Delay = 0.1
+	weapon.HeatRateUp = 0.15
+	weapon.HeatRateDown = 0.2
 	weapon.Attack = function( ent )
-
-		//Gun
-		local ID = ent:LookupAttachment( "muzzle_end" )
+		//Machinegun 1
+		local ID = ent:LookupAttachment( "muzzle" )
 
 		local Muzzle = ent:GetAttachment( ID )
 
@@ -122,16 +111,12 @@ function ENT:InitWeapons()
 		local bullet = {}
 		bullet.Src 	= Muzzle.Pos
 		bullet.Dir 	= -Muzzle.Ang:Forward()
-		bullet.Spread 	= Vector(0.005,0.005,0.005)
-		bullet.TracerName = "lvs_tracer_autocannon"
-		bullet.Force	= 3000
+		bullet.Spread 	= Vector(0.015,0.015,0.015)
+		bullet.TracerName = "lvs_tracer_yellow_small"
+		bullet.Force	= 10
 		bullet.HullSize = 0
-		bullet.Damage	= 600
-		bullet.SplashDamage = 250
-		bullet.SplashDamageRadius = 65
-		bullet.SplashDamageEffect = "lvs_bullet_impact_explosive"
-		bullet.SplashDamageType = DMG_BLAST
-		bullet.Velocity = 10000
+		bullet.Damage	= 12
+		bullet.Velocity = 30000
 		bullet.Attacker = ent:GetDriver()
 		ent:LVSFireBullet( bullet )
 
@@ -140,17 +125,13 @@ function ENT:InitWeapons()
 		effectdata:SetNormal( bullet.Dir )
 		effectdata:SetEntity( ent )
 		util.Effect( "lvs_muzzle", effectdata )
-		
+
 		local PhysObj = ent:GetPhysicsObject()
 		if IsValid( PhysObj ) then
-			PhysObj:ApplyForceOffset( -bullet.Dir * 200000, bullet.Src )
+			PhysObj:ApplyForceOffset( -bullet.Dir * 5000, bullet.Src )
 		end
 
 		ent:TakeAmmo( 1 )
-
-		ent.SNDTurret:PlayOnce( 100 + math.cos( CurTime() + ent:EntIndex() * 1337 ) * 5 + math.Rand(-1,1), 1 )
-
-		ent:EmitSound("vehicles/FieldGunReloadNew.wav", 75, 100, 1, CHAN_WEAPON )
 	end
 	weapon.StartAttack = function( ent )
 		if not IsValid( ent.SNDTurretMG ) then return end
@@ -160,8 +141,9 @@ function ENT:InitWeapons()
 		if not IsValid( ent.SNDTurretMG ) then return end
 		ent.SNDTurretMG:Stop()
 	end
+	weapon.OnOverheat = function( ent ) ent:EmitSound("lvs/overheat.wav") end
 	weapon.HudPaint = function( ent, X, Y, ply )
-		local ID = ent:LookupAttachment( "muzzle_end" )
+		local ID = ent:LookupAttachment( "muzzle" )
 
 		local Muzzle = ent:GetAttachment( ID )
 
@@ -174,9 +156,12 @@ function ENT:InitWeapons()
 
 			local MuzzlePos2D = traceTurret.HitPos:ToScreen() 
 
-			ent:PaintCrosshairOuter( MuzzlePos2D, COLOR_WHITE )
+			ent:PaintCrosshairCenter( MuzzlePos2D, COLOR_WHITE )
 			ent:LVSPaintHitMarker( MuzzlePos2D )
 		end
+	end
+	weapon.OnOverheat = function( ent )
+		ent:EmitSound("lvs/overheat.wav")
 	end
 	self:AddWeapon( weapon, 1 )
 
@@ -200,13 +185,14 @@ function ENT:InitWeapons()
 	self:AddWeapon( weapon, 1 )
 end
 
+
 ENT.ExhaustPositions = {
 	{
-		pos = Vector(-102.59,13.27,30.76),
-		ang = Angle(0,180,0),
+		pos = Vector(-78.3,21.2,57),
+		ang = Angle(20,180,0),
 	},
 	{
-		pos = Vector(-102.59,-13.27,30.76),
-		ang = Angle(0,180,0),
+		pos = Vector(-78.3,-21.2,57),
+		ang = Angle(20,180,0),
 	},
 }

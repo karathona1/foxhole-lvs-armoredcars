@@ -34,20 +34,20 @@ function ENT:OnSpawn( PObj )
 	self:AddTrailerHitch( Vector(-79,0,31.81), LVS.HITCHTYPE_MALE )
 
 	//FRONT ARMOR
-	self:AddArmor( Vector(70,0,35), Angle( 0,0,0 ), Vector(-10,-35,-15), Vector(10,35,42), 200, self.FrontArmor )
+	self:AddArmor( Vector(70,0,35), Angle( 0,0,0 ), Vector(-10,-35,-15), Vector(10,35,42), 600, self.FrontArmor )
 
 	//LEFT ARMOR
-	self:AddArmor( Vector(0,35,35), Angle( 0,0,0 ), Vector(-40,-10,-15), Vector(60,10,42), 100, self.SideArmor )
+	self:AddArmor( Vector(0,35,35), Angle( 0,0,0 ), Vector(-40,-10,-15), Vector(60,10,42), 500, self.SideArmor )
 
 	//Right ARMOR
-	self:AddArmor( Vector(0,-35,35), Angle( 0,0,0 ), Vector(-40,-10,-15), Vector(60,10,42), 100, self.SideArmor )
+	self:AddArmor( Vector(0,-35,35), Angle( 0,0,0 ), Vector(-40,-10,-15), Vector(60,10,42), 500, self.SideArmor )
 
 	//FRONT ARMOR
-	self:AddArmor( Vector(-45,0,35), Angle( 0,0,0 ), Vector(-50,-15,-15), Vector(10,15,55), 100, self.RearArmor )
+	self:AddArmor( Vector(-45,0,35), Angle( 0,0,0 ), Vector(-50,-15,-15), Vector(10,15,55), 400, self.RearArmor )
 
 
 	//TURRET ARMOR
-	local TurretArmor = self:AddArmor( Vector(6,0,75), Angle(0,0,0), Vector(-25,-25,0), Vector(25,25,30), 600, self.TurretArmor )
+	local TurretArmor = self:AddArmor( Vector(6,0,75), Angle(0,0,0), Vector(-25,-25,0), Vector(25,25,30), 1000, self.TurretArmor )
 	TurretArmor.OnDestroyed = function( ent, dmginfo ) if not IsValid( self ) then return end self:SetTurretDestroyed( true ) end
 	TurretArmor.OnRepaired = function( ent ) if not IsValid( self ) then return end self:SetTurretDestroyed( false ) end
 	TurretArmor:SetLabel( "Turret" )

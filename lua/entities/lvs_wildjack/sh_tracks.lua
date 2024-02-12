@@ -7,28 +7,28 @@ if SERVER then
 	function ENT:TracksCreate( PObj )
 		local WheelModel = "models/props_vehicles/tire001b_truck.mdl"
 
-		local L1 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_LEFT, pos = Vector(71,41,50), mdl = WheelModel } )
-		local L2 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_LEFT, pos = Vector(40,41,50), mdl = WheelModel } )
-		local L3 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_LEFT, pos = Vector(8,41,50), mdl = WheelModel } )
-		local L4 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_LEFT, pos = Vector(-24,41,50), mdl = WheelModel } )
-		local L5 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_LEFT, pos = Vector(-60,41,50), mdl = WheelModel } )
+		local L1 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_LEFT, pos = Vector(61,41,18), mdl = WheelModel } )
+		local L2 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_LEFT, pos = Vector(29,41,18), mdl = WheelModel } )
+		local L3 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_LEFT, pos = Vector(-2,41,18), mdl = WheelModel } )
+		local L4 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_LEFT, pos = Vector(-34,41,18), mdl = WheelModel } )
+		local L5 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_LEFT, pos = Vector(-70,41,18), mdl = WheelModel } )
 		local LeftWheelChain = self:CreateWheelChain( { L1, L2, L3, L4, L5 } )
 		self:SetTrackDriveWheelLeft( L4 )
 
-		local R1 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_RIGHT, pos = Vector(71,-41,50), mdl = WheelModel } )
-		local R2 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_RIGHT, pos = Vector(40,-41,50), mdl = WheelModel } )
-		local R3 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_RIGHT, pos = Vector(8,-41,50), mdl = WheelModel } )
-		local R4 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_RIGHT, pos = Vector(-24,-41,50), mdl = WheelModel } )
-		local R5 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_RIGHT, pos = Vector(-60,-41,50), mdl = WheelModel } )
+		local R1 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_RIGHT, pos = Vector(61,-41,18), mdl = WheelModel } )
+		local R2 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_RIGHT, pos = Vector(29,-41,18), mdl = WheelModel } )
+		local R3 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_RIGHT, pos = Vector(-2,-41,18), mdl = WheelModel } )
+		local R4 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_RIGHT, pos = Vector(-34,-41,18), mdl = WheelModel } )
+		local R5 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_RIGHT, pos = Vector(-70,-41,18), mdl = WheelModel } )
 		local RightWheelChain = self:CreateWheelChain( { R1, R2, R3, R4, R5 } )
 		self:SetTrackDriveWheelRight( R4 )
 
-		local LeftTracksArmor = self:AddArmor( Vector(50,41,44), Angle(0,0,0), Vector(-110,-15,-40), Vector(30,15,0), 800, self.FrontArmor )
+		local LeftTracksArmor = self:AddArmor( Vector(40,41,44), Angle(0,0,0), Vector(-125,-15,-45), Vector(45,15,10), 800, self.FrontArmor )
 		LeftTracksArmor.OnDestroyed = LeftWheelChain.OnDestroyed
 		LeftTracksArmor.OnRepaired = LeftWheelChain.OnRepaired
 		LeftTracksArmor:SetLabel( "Tracks" )
 
-		local RightTracksArmor = self:AddArmor( Vector(50,-41,44), Angle(0,0,0), Vector(-110,-15,-40), Vector(30,15,0), 800, self.FrontArmor )
+		local RightTracksArmor = self:AddArmor( Vector(40,-41,44), Angle(0,0,0), Vector(-125,-15,-45), Vector(45,15,10), 800, self.FrontArmor )
 		RightTracksArmor.OnDestroyed = RightWheelChain.OnDestroyed
 		RightTracksArmor.OnRepaired = RightWheelChain.OnRepaired
 		RightTracksArmor:SetLabel( "Tracks" )
@@ -37,15 +37,15 @@ if SERVER then
 			Axle = {
 				ForwardAngle = Angle(0,0,0),
 				SteerType = LVS.WHEEL_STEER_FRONT,
-				SteerAngle = 10,
+				SteerAngle = 13,
 				TorqueFactor = 0,
 				BrakeFactor = 1,
 				UseHandbrake = true,
 			},
 			Wheels = { R1, L1, R2, L2 },
 			Suspension = {
-				Height = 50,
-				MaxTravel = 15,
+				Height = 1,
+				MaxTravel = 5,
 				ControlArmLength = 150,
 				SpringConstant = 20000,
 				SpringDamping = 1000,
@@ -63,8 +63,8 @@ if SERVER then
 			},
 			Wheels = { R3, L3, L4, R4 },
 			Suspension = {
-				Height = 50,
-				MaxTravel = 15,
+				Height = 1,
+				MaxTravel = 5,
 				ControlArmLength = 150,
 				SpringConstant = 20000,
 				SpringDamping = 1000,
@@ -76,15 +76,15 @@ if SERVER then
 			Axle = {
 				ForwardAngle = Angle(0,0,0),
 				SteerType = LVS.WHEEL_STEER_REAR,
-				SteerAngle = 10,
+				SteerAngle = 13,
 				TorqueFactor = 0,
 				BrakeFactor = 1,
 				UseHandbrake = true,
 			},
 			Wheels = { R5, L5 },
 			Suspension = {
-				Height = 50,
-				MaxTravel = 15,
+				Height = 1,
+				MaxTravel = 5,
 				ControlArmLength = 150,
 				SpringConstant = 20000,
 				SpringDamping = 1000,
@@ -95,9 +95,9 @@ if SERVER then
 else
 	ENT.TrackSystemEnable = true
 
-	ENT.TrackScrollTexture = "vehicles/aft/RelicTread"
+	ENT.TrackScrollTexture = "vehicles/highlander/ArmoredCarTrackedWarTreadA"
 	ENT.ScrollTextureData = {
-		["$bumpmap"] = "vehicles/aft/RelicTreadN",
+		["$bumpmap"] = "vehicles/highlander/ArmoredCarTrackedWarTreadN",
 		["$color2"] = "[1.5 1.5 1.5]",
 		["$phong"] = "1",
 		["$phongboost"] = "1",
@@ -118,10 +118,10 @@ else
 		}
 	}
 
-	ENT.TrackLeftSubMaterialID = 1
+	ENT.TrackLeftSubMaterialID = 3
 	ENT.TrackLeftSubMaterialMul = Vector(-0.0065,0,0)
 
-	ENT.TrackRightSubMaterialID = 2
+	ENT.TrackRightSubMaterialID = 3
 	ENT.TrackRightSubMaterialMul = Vector(-0.0065,0,0)
 
 	ENT.TrackPoseParameterLeft = "spin_wheels_left"

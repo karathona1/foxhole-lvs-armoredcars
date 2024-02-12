@@ -71,20 +71,20 @@ function ENT:OnSpawn( PObj )
 	} )
 
 	//FRONT ARMOR
-	self:AddArmor( Vector(85,0,35), Angle( -35,0,0 ), Vector(-10,-35,-15), Vector(10,35,50), 200, self.FrontArmor )
+	self:AddArmor( Vector(85,0,35), Angle( -35,0,0 ), Vector(-10,-35,-15), Vector(10,35,50), 800, self.FrontArmor )
 
 	//LEFT ARMOR
-	self:AddArmor( Vector(0,35,35), Angle( 0,0,0 ), Vector(-40,-10,-15), Vector(60,10,42), 100, self.SideArmor )
+	self:AddArmor( Vector(0,35,35), Angle( 0,0,0 ), Vector(-40,-10,-15), Vector(60,10,42), 600, self.SideArmor )
 
 	//Right ARMOR
-	self:AddArmor( Vector(0,-35,35), Angle( 0,0,0 ), Vector(-40,-10,-15), Vector(60,10,42), 100, self.SideArmor )
+	self:AddArmor( Vector(0,-35,35), Angle( 0,0,0 ), Vector(-40,-10,-15), Vector(60,10,42), 600, self.SideArmor )
 
 	//BACK ARMOR
-	self:AddArmor( Vector(-45,0,35), Angle( 0,0,0 ), Vector(-50,-35,-15), Vector(10,35,42), 100, self.BackArmor )
+	self:AddArmor( Vector(-45,0,35), Angle( 0,0,0 ), Vector(-50,-35,-15), Vector(10,35,42), 400, self.BackArmor )
 
 
 	//TURRET ARMOR
-	local TurretArmor = self:AddArmor( Vector(10,0,75), Angle(0,0,0), Vector(-30,-25,0), Vector(30,25,30), 600, self.TurretArmor )
+	local TurretArmor = self:AddArmor( Vector(10,0,75), Angle(0,0,0), Vector(-30,-25,0), Vector(30,25,30), 800, self.TurretArmor )
 	TurretArmor.OnDestroyed = function( ent, dmginfo ) if not IsValid( self ) then return end self:SetTurretDestroyed( true ) end
 	TurretArmor.OnRepaired = function( ent ) if not IsValid( self ) then return end self:SetTurretDestroyed( false ) end
 	TurretArmor:SetLabel( "Turret" )
