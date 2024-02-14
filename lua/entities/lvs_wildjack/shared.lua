@@ -97,9 +97,9 @@ function ENT:InitWeapons()
 	local weapon = {}
 	weapon.Icon = Material("lvs/weapons/mg.png")
 	weapon.Ammo = 500
-	weapon.Delay = 0.1
-	weapon.HeatRateUp = 0.15
-	weapon.HeatRateDown = 0.2
+	weapon.Delay = 0.05
+	weapon.HeatRateUp = 0.3
+	weapon.HeatRateDown = 0.4
 	weapon.Attack = function( ent )
 		//Machinegun 1
 		local ID = ent:LookupAttachment( "muzzle" )
@@ -108,29 +108,32 @@ function ENT:InitWeapons()
 
 		if not Muzzle then return end
 
-		local bullet = {}
-		bullet.Src 	= Muzzle.Pos
-		bullet.Dir 	= -Muzzle.Ang:Forward()
-		bullet.Spread 	= Vector(0.015,0.015,0.015)
-		bullet.TracerName = "lvs_tracer_yellow_small"
-		bullet.Force	= 10
-		bullet.HullSize = 0
-		bullet.Damage	= 12
-		bullet.Velocity = 30000
-		bullet.Attacker = ent:GetDriver()
-		ent:LVSFireBullet( bullet )
+		if vFireInstalled then
+			local fireball = CreateVFireBall(35, 15, Muzzle.Pos - Muzzle.Ang:Forward() * 16, self:GetVelocity() -Muzzle.Ang:Forward() * 1500, ent:GetDriver())
+		else
+			local bullet = {}
+			bullet.Src 	= Muzzle.Pos
+			bullet.Dir 	= -Muzzle.Ang:Forward()
+			bullet.Spread 	= Vector(0.015,0.015,0.015)
+			bullet.TracerName = "lvs_tracer_yellow_small"
+			bullet.Force	= 10
+			bullet.HullSize = 0
+			bullet.Damage	= 12
+			bullet.Velocity = 30000
+			bullet.Attacker = ent:GetDriver()
+			ent:LVSFireBullet( bullet )
 
-		local effectdata = EffectData()
-		effectdata:SetOrigin( bullet.Src )
-		effectdata:SetNormal( bullet.Dir )
-		effectdata:SetEntity( ent )
-		util.Effect( "lvs_muzzle", effectdata )
+			local effectdata = EffectData()
+			effectdata:SetOrigin( bullet.Src )
+			effectdata:SetNormal( bullet.Dir )
+			effectdata:SetEntity( ent )
+			util.Effect( "lvs_muzzle", effectdata )
 
-		local PhysObj = ent:GetPhysicsObject()
-		if IsValid( PhysObj ) then
-			PhysObj:ApplyForceOffset( -bullet.Dir * 5000, bullet.Src )
+			local PhysObj = ent:GetPhysicsObject()
+			if IsValid( PhysObj ) then
+				PhysObj:ApplyForceOffset( -bullet.Dir * 5000, bullet.Src )
+			end
 		end
-
 		ent:TakeAmmo( 1 )
 	end
 	weapon.StartAttack = function( ent )

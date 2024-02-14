@@ -23,7 +23,7 @@ function ENT:PaintOptics( Pos2D, Col, PodIndex, Type )
 	surface.SetDrawColor( 0, 0, 0, 150 )
 	surface.DrawTexturedRect( Pos2D.x - 210, Pos2D.y - 23, 420, 420 )
 
-	self:DrawRotatedText( "FLAMME", Pos2D.x + 40, Pos2D.y + 10, "LVS_FONT_PANEL", Color(0,0,0,220), 0)
+	self:DrawRotatedText( "FLAME", Pos2D.x + 40, Pos2D.y + 10, "LVS_FONT_PANEL", Color(0,0,0,220), 0)
 
 	local diameter = ScrH()
 	local radius = diameter * 0.5

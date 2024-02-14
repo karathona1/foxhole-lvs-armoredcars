@@ -17,7 +17,7 @@ function ENT:OnSpawn( PObj )
 
 	local ID = self:LookupAttachment( "muzzle" )
 	local Muzzle = self:GetAttachment( ID )
-	self.SNDTurretMG = self:AddSoundEmitter( self:WorldToLocal( Muzzle.Pos ), "lvs/vehicles/sherman/mg_loop.wav", "lvs/vehicles/sherman/mg_loop_interior.wav" )
+	self.SNDTurretMG = self:AddSoundEmitter( self:WorldToLocal( Muzzle.Pos ), "ambient/fire/fire_big_loop1.wav", "ambient/fire/fire_big_loop1.wav" )
 	self.SNDTurretMG:SetSoundLevel( 95 )
 	self.SNDTurretMG:SetParent( self, ID )
 
