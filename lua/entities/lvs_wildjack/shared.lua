@@ -109,11 +109,11 @@ function ENT:InitWeapons()
 		if not Muzzle then return end
 
 		if vFireInstalled then
-			local fireball = CreateVFireBall(35, 15, Muzzle.Pos - Muzzle.Ang:Forward() * 16, self:GetVelocity() -Muzzle.Ang:Forward() * 1500, ent:GetDriver())
+			local fireball = CreateVFireBall(35, 15, Muzzle.Pos + -Muzzle.Ang:Forward() * 16, self:GetVelocity() + -Muzzle.Ang:Forward() * 1500, ent:GetDriver())
 		else
 			local bullet = {}
 			bullet.Src 	= Muzzle.Pos
-			bullet.Dir 	= -Muzzle.Ang:Forward()
+			bullet.Dir 	= Muzzle.Ang:Forward()
 			bullet.Spread 	= Vector(0.015,0.015,0.015)
 			bullet.TracerName = "lvs_tracer_yellow_small"
 			bullet.Force	= 10
