@@ -70,19 +70,19 @@ function ENT:OnSpawn( PObj )
 	} )
 
 	//FRONT ARMOR
-	self:AddArmor( Vector(70,0,35), Angle( 0,0,0 ), Vector(-55,-25,-15), Vector(25,25,35), 800, self.FrontArmor )
+	self:AddArmor( Vector(70,0,35), Angle( 0,0,0 ), Vector(-55,-25,-15), Vector(25,25,35), 500, self.FrontArmor )
 
 	//LEFT ARMOR
-	self:AddArmor( Vector(0,35,35), Angle( 0,0,0 ), Vector(-70,-5,-15), Vector(40,5,50), 600, self.SideArmor )
+	self:AddArmor( Vector(0,35,35), Angle( 0,0,0 ), Vector(-70,-5,-15), Vector(40,5,50), 400, self.SideArmor )
 
 	//Right ARMOR
-	self:AddArmor( Vector(0,-35,35), Angle( 0,0,0 ), Vector(-70,-5,-15), Vector(40,5,50), 600, self.SideArmor )
+	self:AddArmor( Vector(0,-35,35), Angle( 0,0,0 ), Vector(-70,-5,-15), Vector(40,5,50), 400, self.SideArmor )
 
 	//BACK ARMOR
 	self:AddArmor( Vector(-75,0,35), Angle( 0,0,0 ), Vector(-5,-35,-15), Vector(5,35,50), 300, self.BackArmor )
 
 	//VISOR ARMOR
-	self:AddArmor( Vector(30,0,75), Angle( 0,0,0 ), Vector(-10,-25,-10), Vector(10,25,10), 600, self.FrontArmor )
+	self:AddArmor( Vector(30,0,75), Angle( 0,0,0 ), Vector(-10,-25,-10), Vector(10,25,10), 400, self.FrontArmor )
 
 
 	//TURRET ARMOR

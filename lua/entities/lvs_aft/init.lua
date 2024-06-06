@@ -34,16 +34,16 @@ function ENT:OnSpawn( PObj )
 	self:AddTrailerHitch( Vector(-79,0,31.81), LVS.HITCHTYPE_MALE )
 
 	//FRONT ARMOR
-	self:AddArmor( Vector(70,0,35), Angle( 0,0,0 ), Vector(-10,-35,-15), Vector(10,35,42), 600, self.FrontArmor )
+	self:AddArmor( Vector(70,0,35), Angle( 0,0,0 ), Vector(-10,-35,-15), Vector(10,35,42), 400, self.FrontArmor )
 
 	//LEFT ARMOR
-	self:AddArmor( Vector(0,35,35), Angle( 0,0,0 ), Vector(-40,-10,-15), Vector(60,10,42), 500, self.SideArmor )
+	self:AddArmor( Vector(0,35,35), Angle( 0,0,0 ), Vector(-40,-10,-15), Vector(60,10,42), 300, self.SideArmor )
 
 	//Right ARMOR
-	self:AddArmor( Vector(0,-35,35), Angle( 0,0,0 ), Vector(-40,-10,-15), Vector(60,10,42), 500, self.SideArmor )
+	self:AddArmor( Vector(0,-35,35), Angle( 0,0,0 ), Vector(-40,-10,-15), Vector(60,10,42), 300, self.SideArmor )
 
 	//FRONT ARMOR
-	self:AddArmor( Vector(-45,0,35), Angle( 0,0,0 ), Vector(-50,-15,-15), Vector(10,15,55), 400, self.RearArmor )
+	self:AddArmor( Vector(-45,0,35), Angle( 0,0,0 ), Vector(-50,-15,-15), Vector(10,15,55), 200, self.RearArmor )
 
 
 	//TURRET ARMOR
