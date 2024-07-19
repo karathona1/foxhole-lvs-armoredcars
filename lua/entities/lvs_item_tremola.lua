@@ -1,93 +1,44 @@
 AddCSLuaFile()
 
-ENT.Type            = "anim"
+ENT.Base = "lvs_bomb"
 
 ENT.PrintName = "Tremola GPb-1"
 ENT.Author = "Kalamari"
 ENT.Category = "[LVS] - Foxhole"
 
-ENT.Spawnable		= true
-ENT.AdminOnly		= true
+ENT.Spawnable		= false
 
-if CLIENT then return end -- do not do this logic on the client
+-- used in lvs_bomb to determine the explosion effect.
+ENT.ExplosionEffect = "lvs_explosion_small"
+
+-- Our defined delay
 ENT.ExplodeDelay = 4
 
 if SERVER then
-	function ENT:SetDamage( num ) self._dmg = num end
-	function ENT:SetRadius( num ) self._radius = num end
-	function ENT:SetAttacker( ent ) self._attacker = ent end
-
-	function ENT:GetAttacker() return self._attacker or NULL end
-	function ENT:GetDamage() return (self._dmg or 400) end
-	function ENT:GetRadius() return (self._radius or 250) end
-
-	function ENT:SpawnFunction( ply, tr, ClassName )
-		if not tr.Hit then return end
-
-		local ent = ents.Create( ClassName )
-		ent:SetPos( tr.HitPos + tr.HitNormal * 5 )
-		ent:Spawn()
-		ent:Activate()
-
-		return ent
-
-	end
-
-	function ENT:Initialize()	
-		self:SetModel( "models/proj_tremola.mdl" )
-
-		self:PhysicsInit( SOLID_VPHYSICS )
-		self:SetMoveType( MOVETYPE_VPHYSICS )
-		self:SetSolid( SOLID_VPHYSICS )
-		self:SetRenderMode( RENDERMODE_TRANSALPHA )
-		self:SetCollisionGroup( COLLISION_GROUP_PROJECTILE )
-
-		self.TrailEntity = util.SpriteTrail( self, 0, Color(120,120,120,120), false, 5, 40, 0.2, 1 / ( 15 + 1 ) * 0.5, "trails/smoke" )
-
-		self.CreateTime = CurTime()
-	end
 
 	function ENT:Think()
-		self:NextThink( CurTime() )
+		local T = CurTime()
+		self:NextThink( T )
 
-		if CurTime() - self.CreateTime >= self.ExplodeDelay then
+		self:UpdateTrajectory()
+
+		-- self.SpawnTime is set in lvs_bomb when the bomb is actually fired
+		if not self.SpawnTime then return true end
+		if (self.SpawnTime + self.ExplodeDelay) < T then
 			self:Detonate()
 		end
-
 		return true
 	end
 
-	function ENT:Detonate()
-		if self.IsExploded then return end
-
-		self.IsExploded = true
-
-		local Pos = self:GetPos()
-
-		local effectdata = EffectData()
-		effectdata:SetOrigin( Pos )
-
-		if self:WaterLevel() >= 2 then
-			util.Effect( "WaterSurfaceExplosion", effectdata, true, true )
-		else
-			util.Effect( "lvs_defence_explosion", effectdata )
-		end
-
-		local dmginfo = DamageInfo()
-		dmginfo:SetDamage( self:GetDamage() )
-		dmginfo:SetAttacker( IsValid( self:GetAttacker() ) and self:GetAttacker() or self )
-		dmginfo:SetDamageType( DMG_DIRECT )
-		dmginfo:SetInflictor( self )
-		dmginfo:SetDamagePosition( Pos )
-
-		util.BlastDamageInfo( dmginfo, Pos, self:GetRadius() )
-
-		self:Remove()
+	-- This override's lvs_bomb's StartTouch function so it does not detonate on impact
+	function ENT:StartTouch( entity )
 	end
 
+	-- This override's lvs_bomb's PhysicsCollide function so it does not detonate on impact
+	-- Also plays grenade tink sounds
 	function ENT:PhysicsCollide( data, physobj )
-		self.Active = true
-
+		if not self.IsEnabled then return end
+		if istable( self._FilterEnts ) and self._FilterEnts[ data.HitEntity ] then return end
 		if data.Speed > 60 and data.DeltaTime > 0.2 then
 			local VelDif = data.OurOldVelocity:Length() - data.OurNewVelocity:Length()
 
@@ -99,16 +50,5 @@ if SERVER then
 
 			physobj:SetVelocity( data.OurOldVelocity * 0.5 )
 		end
-	end
-else
-	function ENT:Draw()
-		self:DrawModel()
-	end
-
-	function ENT:Think()
-		return false
-	end
-
-	function ENT:OnRemove()
 	end
 end

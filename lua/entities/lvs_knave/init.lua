@@ -123,15 +123,15 @@ function ENT:MakeProjectile()
 	projectile:SetPos(Muzzle.Pos)
 	ang:RotateAroundAxis(ang:Right(), 180)
 	projectile:SetAngles(ang)
-	--projectile:SetParent(self, ID)
+	projectile:SetParent(self, ID)
 	projectile:Spawn()
 	projectile:Activate()
-	--projectile:SetModel("models/proj_tremola.mdl")
-	--projectile:SetAttacker(IsValid(Driver) and Driver or self)
-	--projectile:SetEntityFilter(self:GetCrosshairFilterEnts())
-	--projectile:SetSpeed(Muzzle.Ang:Forward() * 1500)
-	--projectile:SetRadius(200)
-	--projectile:SetDamage(400)
+	projectile:SetModel("models/proj_tremola.mdl")
+	projectile:SetAttacker(IsValid(Driver) and Driver or self)
+	projectile:SetEntityFilter(self:GetCrosshairFilterEnts())
+	projectile:SetSpeed(Muzzle.Ang:Forward() * 1500)
+	projectile:SetRadius(200)
+	projectile:SetDamage(200)
 
 	projectile.UpdateTrajectory = function(bomb)
 		bomb:SetSpeed(bomb:GetForward() * 1500)
@@ -149,8 +149,9 @@ function ENT:FireProjectile()
 	local Muzzle = self:GetAttachment(ID)
 	if not Muzzle or not IsValid(self._ProjectileEntity) then return end
 
-	--self._ProjectileEntity:Enable()
-	--self._ProjectileEntity:SetCollisionGroup(COLLISION_GROUP_NONE)
+	self._ProjectileEntity:Enable()
+	self._ProjectileEntity:SetCollisionGroup(COLLISION_GROUP_NONE)
+
 	local effectdata = EffectData()
 	effectdata:SetOrigin(self._ProjectileEntity:GetPos())
 	effectdata:SetEntity(self._ProjectileEntity)
@@ -164,7 +165,7 @@ function ENT:FireProjectile()
 
 	local PhysObj = self:GetPhysicsObject()
 	if IsValid(PhysObj) then
-		PhysObj:ApplyForceOffset(Muzzle.Ang:Forward() * 150000, Muzzle.Pos)
+		PhysObj:ApplyForceOffset(Muzzle.Ang:Forward() * 100000, Muzzle.Pos)
 	end
 
 	self:TakeAmmo()
