@@ -16,6 +16,12 @@ ENT.ExplodeDelay = 4
 
 if SERVER then
 
+	function ENT:Initialize()	
+		self:SetModel( "models/proj_tremola.mdl" )
+
+		self.TrailEntity = util.SpriteTrail( self, 0, Color(120,120,120,120), false, 5, 40, 0.2, 1 / ( 15 + 1 ) * 0.5, "trails/smoke" )
+	end
+
 	function ENT:Think()
 		local T = CurTime()
 		self:NextThink( T )
