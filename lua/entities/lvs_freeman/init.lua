@@ -33,8 +33,8 @@ function ENT:OnSpawn( PObj )
 	local WheelFrontLeft = self:AddWheel( { pos = Vector(65,36,25), mdl = WheelModel, mdl_ang = Angle(0,0,0) } )
 	local WheelFrontRight = self:AddWheel( { pos = Vector(65,-36,25), mdl = WheelModel, mdl_ang = Angle(0,180,0) } )
 
-	local WheelRearLeft = self:AddWheel( { pos = Vector(-53,36,25), mdl = WheelModel, mdl_ang = Angle(0,0,0) } )
-	local WheelRearRight = self:AddWheel( { pos = Vector(-53,-36,25), mdl = WheelModel, mdl_ang = Angle(0,180,0) } )
+	local WheelRearLeft = self:AddWheel( { pos = Vector(-53,36,23), mdl = WheelModel, mdl_ang = Angle(0,0,0) } )
+	local WheelRearRight = self:AddWheel( { pos = Vector(-53,-36,23), mdl = WheelModel, mdl_ang = Angle(0,180,0) } )
 
 	local SuspensionSettings = {
 		Height = 25,

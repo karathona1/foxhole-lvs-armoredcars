@@ -143,7 +143,7 @@ function ENT:InitWeapons()
 		
 		local PhysObj = ent:GetPhysicsObject()
 		if IsValid( PhysObj ) then
-			PhysObj:ApplyForceOffset( -bullet.Dir * 200000, bullet.Src )
+			PhysObj:ApplyForceOffset( -bullet.Dir * 100000, bullet.Src )
 		end
 
 		ent:TakeAmmo( 1 )
