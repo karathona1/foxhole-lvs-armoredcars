@@ -75,14 +75,14 @@ ENT.Lights = {
 		SubMaterialID = 1,
 		Sprites = {
 			[1] = {
-				pos = Vector(109.12,-0.19,35.82),
+				pos = Vector(108.12,-0.19,35.82),
 				colorB = 200,
 				colorA = 150,
 			},
 		},
 		ProjectedTextures = {
 			[1] = {
-				pos = Vector(109.12,-0.19,35.82),
+				pos = Vector(108.12,-0.19,35.82),
 				ang = Angle(0,0,0),
 				colorB = 200,
 				colorA = 150,
