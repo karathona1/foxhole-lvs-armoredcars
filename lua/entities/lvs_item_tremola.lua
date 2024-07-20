@@ -16,7 +16,7 @@ ENT.ExplodeDelay = 4
 
 if SERVER then
 
-	function ENT:Initialize()	
+	function ENT:Initialize()
 		self:SetModel( "models/proj_tremola.mdl" )
 
 		self.TrailEntity = util.SpriteTrail( self, 0, Color(120,120,120,120), false, 5, 40, 0.2, 1 / ( 15 + 1 ) * 0.5, "trails/smoke" )
@@ -45,6 +45,17 @@ if SERVER then
 	function ENT:PhysicsCollide( data, physobj )
 		if not self.IsEnabled then return end
 		if istable( self._FilterEnts ) and self._FilterEnts[ data.HitEntity ] then return end
+
+		-- The first time collision happens, disable the custom motion controller and enable gravity
+		if not self.Collided then
+			self.Collided = true
+			-- Must be in a timer, MotionController cannot be stopped during physics collision
+			timer.Simple(0.01, function()
+				self:StopMotionController()
+				self:GetPhysicsObject():EnableGravity(true)
+			end)
+		end
+
 		if data.Speed > 60 and data.DeltaTime > 0.2 then
 			local VelDif = data.OurOldVelocity:Length() - data.OurNewVelocity:Length()
 
@@ -56,5 +67,51 @@ if SERVER then
 
 			physobj:SetVelocity( data.OurOldVelocity * 0.5 )
 		end
+	end
+
+	-- This is the same code as in lvs_bomb
+	-- We override it in order to change the projectile mass
+	function ENT:Enable()
+		if self.IsEnabled then return end
+		local Parent = self:GetParent()
+		if IsValid(Parent) then
+			self:SetOwner(Parent)
+			self:SetParent(NULL)
+		end
+
+		self:PhysicsInit(SOLID_VPHYSICS)
+		self:SetMoveType(MOVETYPE_VPHYSICS)
+		self:SetSolid(SOLID_VPHYSICS)
+		self:SetCollisionGroup(COLLISION_GROUP_WORLD)
+		self:PhysWake()
+		timer.Simple(0.5, function()
+			if not IsValid(self) then return end
+			self:SetCollisionGroup(COLLISION_GROUP_NONE)
+		end)
+
+		self.IsEnabled = true
+		local pObj = self:GetPhysicsObject()
+		if not IsValid(pObj) then
+			self:Remove()
+			print("LVS: missing model. Missile terminated.")
+			return
+		end
+
+		pObj:SetMass(50) -- default was 500
+		pObj:EnableGravity(false)
+		pObj:EnableMotion(true)
+		pObj:EnableDrag(false)
+		pObj:SetVelocityInstantaneous(self:GetSpeed())
+
+		-- Makes the entity call StartTouch, Touch and EndTouch
+		self:SetTrigger(true)
+
+		-- Makes the entity call PhysicsSimulate to do custom physics behavior
+		-- Probably used to make the bomb more accurately follow the trajectory
+		self:StartMotionController()
+
+		self:PhysWake()
+		self.SpawnTime = CurTime()
+		self:SetActive(true)
 	end
 end
