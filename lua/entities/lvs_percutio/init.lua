@@ -31,8 +31,8 @@ function ENT:OnSpawn( PObj )
 	local WheelModel = "models/wheel_xiphos.mdl"
 	local WheelModelAlt = "models/wheel_percutio.mdl"
 
-	local WheelFrontLeft = self:AddWheel( { pos = Vector(53,41,25), mdl = WheelModel, mdl_ang = Angle(0,180,0) } )
-	local WheelFrontRight = self:AddWheel( { pos = Vector(53,-41,25), mdl = WheelModel } )
+	local WheelFrontLeft = self:AddWheel( { pos = Vector(53,41,25), mdl = WheelModel } )
+	local WheelFrontRight = self:AddWheel( { pos = Vector(53,-41,25), mdl = WheelModel, mdl_ang = Angle(0,180,0) } )
 
 	local WheelRearLeft = self:AddWheel( { pos = Vector(-67,38,25), mdl = WheelModelAlt, mdl_ang = Angle(0,180,0) } )
 	local WheelRearRight = self:AddWheel( { pos = Vector(-67,-38,25), mdl = WheelModelAlt} )

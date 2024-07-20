@@ -131,7 +131,7 @@ function ENT:MakeProjectile()
 	projectile:SetEntityFilter(self:GetCrosshairFilterEnts())
 	projectile:SetSpeed(Muzzle.Ang:Forward() * 1500)
 	projectile:SetRadius(200)
-	projectile:SetDamage(200)
+	projectile:SetDamage(388)
 
 	projectile.UpdateTrajectory = function(bomb)
 		bomb:SetSpeed(bomb:GetForward() * 1500)

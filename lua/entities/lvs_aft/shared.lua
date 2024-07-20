@@ -34,7 +34,7 @@ ENT.TransGearsReverse = 1
 ENT.FastSteerAngleClamp = 10
 ENT.FastSteerDeactivationDriftAngle = 10
 
-ENT.PhysicsWeightScale = 2.5
+ENT.PhysicsWeightScale = 1
 ENT.PhysicsDampingForward = true
 ENT.PhysicsDampingReverse = true
 
@@ -121,7 +121,7 @@ function ENT:InitWeapons()
 		local bullet = {}
 		bullet.Src 	= Muzzle.Pos
 		bullet.Dir 	= -Muzzle.Ang:Forward()
-		bullet.Spread 	= Vector(0.015,0.015,0.015)
+		bullet.Spread 	= Vector(0.005,0.005,0.005)
 		bullet.TracerName = "lvs_tracer_yellow_small"
 		bullet.Force	= 100
 		bullet.HullSize = 0
@@ -146,7 +146,7 @@ function ENT:InitWeapons()
 		local bullet2 = {}
 		bullet2.Src 	= Muzzle2.Pos
 		bullet2.Dir 	= -Muzzle2.Ang:Forward()
-		bullet2.Spread 	= Vector(0.015,0.015,0.015)
+		bullet2.Spread 	= Vector(0.005,0.005,0.005)
 		bullet2.TracerName = "lvs_tracer_yellow_small"
 		bullet2.Force	= 100
 		bullet2.HullSize = 0
