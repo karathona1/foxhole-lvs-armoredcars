@@ -103,7 +103,7 @@ function ENT:InitWeapons()
 
 	//MACHINEGUN
 	local weapon = {}
-	weapon.Icon = Material("lvs/weapons/mg.png")
+	weapon.Icon = Material("lvs/weapons/792mm.png")
 	weapon.Ammo = 500
 	weapon.Delay = 0.1
 	weapon.HeatRateUp = 0.15
@@ -201,7 +201,7 @@ function ENT:InitWeapons()
 
 	//NOTHING
 	local weapon = {}
-	weapon.Icon = Material("lvs/weapons/tank_noturret.png")
+	weapon.Icon = Material("lvs/weapons/cross.png")
 	weapon.Ammo = -1
 	weapon.Delay = 0
 	weapon.HeatRateUp = 0

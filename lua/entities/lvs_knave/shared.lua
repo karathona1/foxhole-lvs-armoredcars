@@ -102,7 +102,7 @@ function ENT:InitWeapons()
 	local COLOR_WHITE = Color(255,255,255,255)
 
 	local weapon = {}
-	weapon.Icon = Material("lvs/weapons/bomb.png")
+	weapon.Icon = Material("lvs/weapons/tremola.png")
 	weapon.Ammo = 24
 	weapon.Delay = 0.75
 	weapon.HeatRateUp = 0
@@ -135,7 +135,7 @@ function ENT:InitWeapons()
 
 	//NOTHING
 	local weapon = {}
-	weapon.Icon = Material("lvs/weapons/tank_noturret.png")
+	weapon.Icon = Material("lvs/weapons/cross.png")
 	weapon.Ammo = -1
 	weapon.Delay = 0
 	weapon.HeatRateUp = 0
