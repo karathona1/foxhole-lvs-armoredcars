@@ -27,7 +27,7 @@ ENT.MaxVelocity = 233
 ENT.MaxVelocityReverse = 200
 
 ENT.EngineCurve = 0.2
-ENT.EngineTorque = 500
+ENT.EngineTorque = 300
 
 ENT.TransGears = 3
 ENT.TransGearsReverse = 1
@@ -35,7 +35,7 @@ ENT.TransGearsReverse = 1
 ENT.FastSteerAngleClamp = 5
 ENT.FastSteerDeactivationDriftAngle = 5
 
-ENT.PhysicsWeightScale = 1.5
+ENT.PhysicsWeightScale = 1
 ENT.PhysicsDampingForward = true
 ENT.PhysicsDampingReverse = true
 
