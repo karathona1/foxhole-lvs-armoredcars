@@ -90,3 +90,8 @@ function ENT:OnSpawn( PObj )
 	TurretArmor:SetLabel( "Turret" )
 	self:SetTurretArmor( TurretArmor )
 end
+
+-- set material on death
+function ENT:OnDestroyed()
+	self:SetMaterial("props/metal_damaged")
+end

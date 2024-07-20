@@ -176,3 +176,8 @@ function ENT:FireProjectile()
 	self.SNDTurret:PlayOnce(100 + math.cos(CurTime() + self:EntIndex() * 1337) * 5 + math.Rand(-1, 1), 1)
 	self:EmitSound("vehicles/GrenadeLauncherCReload.wav", 75, 100, 1, CHAN_WEAPON)
 end
+
+-- set material on death
+function ENT:OnDestroyed()
+	self:SetMaterial("props/metal_damaged")
+end
