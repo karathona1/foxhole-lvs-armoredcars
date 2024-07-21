@@ -26,8 +26,8 @@ ENT.CannonArmorPenetration = 3900
 ENT.MaxVelocity = 233
 ENT.MaxVelocityReverse = 200
 
-ENT.EngineCurve = 0.2
-ENT.EngineTorque = 300
+ENT.EngineCurve = 0.8
+ENT.EngineTorque = 200
 
 ENT.TransGears = 3
 ENT.TransGearsReverse = 1
