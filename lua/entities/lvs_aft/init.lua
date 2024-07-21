@@ -8,7 +8,7 @@ include("sh_tracks.lua")
 include("sh_turret.lua")
 
 function ENT:OnSpawn( PObj )
-	local DriverSeat = self:AddDriverSeat( Vector(20.3,15.6,35), Angle(0,-90,0) )
+	local DriverSeat = self:AddDriverSeat( Vector(20.3,0,35), Angle(0,-90,0) )
 	DriverSeat.ExitPos = Vector(104,0,30)
 	DriverSeat.HidePlayer = true
 

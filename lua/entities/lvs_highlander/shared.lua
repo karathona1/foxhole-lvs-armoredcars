@@ -27,7 +27,7 @@ ENT.MaxVelocity = 233
 ENT.MaxVelocityReverse = 200
 
 ENT.EngineCurve = 0.8
-ENT.EngineTorque = 200
+ENT.EngineTorque = 220
 
 ENT.TransGears = 3
 ENT.TransGearsReverse = 1
